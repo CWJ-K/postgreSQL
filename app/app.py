@@ -47,7 +47,7 @@ def list_open_polls(connection):
 def prompt_vote_poll(connection):
     poll_id = int(input("Enter poll would you like to vote on: "))
 
-    poll_options = databae.get_poll_details(connection, poll_id)
+    poll_options = database.get_poll_details(connection, poll_id)
     _print_poll_options(poll_options)
 
     option_id = int(input("Enter option you'd like to vote for: "))
@@ -55,7 +55,7 @@ def prompt_vote_poll(connection):
     database.add_poll_vote(connection, username, option_id)
 
 
-def _print_poll_options(poll_with_options):
+def _print_poll_options(poll_with_options: List[database.PollWithOption]):
     for option in poll_with_options:
         print(f"{option[3]}: {option[4]}")
 
